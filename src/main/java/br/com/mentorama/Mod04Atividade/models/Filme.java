@@ -2,13 +2,13 @@ package br.com.mentorama.Mod04Atividade.models;
 
 public class Filme {
 
-    private Integer id;
+    private int id;
     private String nome;
     private String nomeDoDiretor;
-    private Integer ano;
+    private int ano;
     private int nota;
 
-    public Filme(final Integer id, final String nome, final String nomeDoDiretor, final Integer ano, final int nota) {
+    public Filme(final int id, final String nome, final String nomeDoDiretor, final int ano, final int nota) {
         this.id = id;
         this.nome = nome;
         this.nomeDoDiretor = nomeDoDiretor;
@@ -16,7 +16,11 @@ public class Filme {
         this.nota = nota;
     }
 
-    public Integer getId() {
+    public Filme() {
+
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -28,7 +32,7 @@ public class Filme {
         return nomeDoDiretor;
     }
 
-    public Integer getAno() {
+    public int getAno() {
         return ano;
     }
 
