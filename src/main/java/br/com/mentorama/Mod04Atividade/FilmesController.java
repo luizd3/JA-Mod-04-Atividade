@@ -1,28 +1,34 @@
 package br.com.mentorama.Mod04Atividade;
 
 import br.com.mentorama.Mod04Atividade.models.Filme;
-import br.com.mentorama.Mod04Atividade.models.Nota;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/filmes")
 public class FilmesController {
 
-    private Filme filme;
+    private final List<Filme> filmes;
+    private UUID id;
 
-//    public FilmesController() {
-//        this.filme = new Filme();
-//    }
+    public FilmesController() {
+        this.filmes = new ArrayList<>();
+    }
 
     @GetMapping
-    public Filme findAll() {
-        return filme;
+    public List<Filme> findAll() {
+        return filmes;
     }
 
     @PostMapping
-    public int add(@RequestBody Filme filme) {
-        this.filme = filme;
-        return filme.getId();
+    public String add(@RequestBody Filme filme) {
+        this.id = UUID.randomUUID();
+        filme.setId(id);
+        this.filmes.add(filme);
+        return filme.getNome();
     }
 
 }
