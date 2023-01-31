@@ -22,8 +22,7 @@ public class FilmesService {
     }
 
     public String add(Filme filme) {
-        this.id = UUID.randomUUID();
-        filme.setId(id);
+        filme.setId(UUID.randomUUID());
         this.filmes.add(filme);
         return filme.getNome();
     }
