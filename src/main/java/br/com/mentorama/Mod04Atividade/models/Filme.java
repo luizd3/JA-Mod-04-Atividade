@@ -6,9 +6,9 @@ public class Filme {
     private String nome;
     private String nomeDoDiretor;
     private Integer ano;
-    private Integer nota;
+    private int nota;
 
-    public Filme(final Integer id, final String nome, final String nomeDoDiretor, final Integer ano, final Integer nota) {
+    public Filme(final Integer id, final String nome, final String nomeDoDiretor, final Integer ano, final int nota) {
         this.id = id;
         this.nome = nome;
         this.nomeDoDiretor = nomeDoDiretor;
@@ -32,7 +32,7 @@ public class Filme {
         return ano;
     }
 
-    public Integer getNota() {
+    public int getNota() {
         return nota;
     }
 }
