@@ -22,10 +22,6 @@ public class Filme {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -40,6 +36,10 @@ public class Filme {
 
     public int getNota() {
         return nota;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
