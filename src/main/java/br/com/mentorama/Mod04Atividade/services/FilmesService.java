@@ -26,28 +26,21 @@ public class FilmesService {
     }
 
     public void add(Filme filme) {
-        int notaValidada = validaNota(filme.getNota());
-        if(notaValidada >= 0){
-            filme.setId(UUID.randomUUID());
-            this.filmes.add(filme);
-        } else {
-            throw new NotaInvalidaException();
-        }
+        validaNota(filme.getNota());
+        filme.setId(UUID.randomUUID());
+        this.filmes.add(filme);
     }
 
     public void update(Filme filme) {
-        int notaValidada = validaNota(filme.getNota());
-        if (notaValidada >= 0) {
-            Filme filmeParaAlterar = filmes.stream()
-                    .filter(film -> film.getId().equals(filme.getId()))
-                    .findFirst()
-                    .orElseThrow(FilmeNaoEncontradoException::new);
-            filmeParaAlterar.setNome(filme.getNome());
-            filmeParaAlterar.setNomeDoDiretor(filme.getNomeDoDiretor());
-            filmeParaAlterar.setAno(filme.getAno());
-        } else {
-            throw new NotaInvalidaException();
-        }
+        validaNota(filme.getNota());
+        Filme filmeParaAlterar = filmes.stream()
+                .filter(film -> film.getId().equals(filme.getId()))
+                .findFirst()
+                .orElseThrow(FilmeNaoEncontradoException::new);
+        filmeParaAlterar.setNome(filme.getNome());
+        filmeParaAlterar.setNomeDoDiretor(filme.getNomeDoDiretor());
+        filmeParaAlterar.setAno(filme.getAno());
+        filmeParaAlterar.setNota(filme.getNota());
     }
 
     public void delete(UUID id) {
@@ -57,7 +50,10 @@ public class FilmesService {
         }
     }
 
-    private int validaNota(int notaNova) {
-        return Arrays.binarySearch(notas, notaNova);
+    private void validaNota(int notaNova) {
+        int notaValidada = Arrays.binarySearch(notas, notaNova);
+        if (notaValidada < 0) {
+            throw new NotaInvalidaException();
+        }
     }
 }
