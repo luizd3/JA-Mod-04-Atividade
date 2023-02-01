@@ -41,7 +41,7 @@ public class FilmesService {
             Filme filmeParaAlterar = filmes.stream()
                     .filter(film -> film.getId().equals(filme.getId()))
                     .findFirst()
-                    .get();
+                    .orElseThrow(FilmeNaoEncontradoException::new);
             filmeParaAlterar.setNome(filme.getNome());
             filmeParaAlterar.setNomeDoDiretor(filme.getNomeDoDiretor());
             filmeParaAlterar.setAno(filme.getAno());
