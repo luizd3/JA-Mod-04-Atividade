@@ -27,4 +27,10 @@ public class FilmesController {
         return new ResponseEntity<>("Filme '" + filme.getNome() + "' adicionado.", HttpStatus.CREATED);
     }
 
+    @PutMapping
+    public String update(@RequestBody Filme filme) {
+        filmesService.update(filme);
+        return "Filme atualizado.";
+    }
+
 }

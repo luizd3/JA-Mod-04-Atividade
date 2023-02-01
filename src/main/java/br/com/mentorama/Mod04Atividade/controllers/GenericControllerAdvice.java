@@ -11,7 +11,8 @@ public class GenericControllerAdvice {
 
     @ExceptionHandler ({NotaInvalidaException.class})
     public static ResponseEntity<String> handle(final NotaInvalidaException e) {
-        String message = "Filme não cadastrado. Nota inválida. Nota deve ser um número inteiro entre 1 e 5.";
+        String message = "Filme não cadastrado/atualizado." +
+                " Nota inválida. Nota deve ser um número inteiro entre 1 e 5.";
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 

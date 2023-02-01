@@ -41,4 +41,20 @@ public class Filme {
     public int getNota() {
         return nota;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setNomeDoDiretor(String nomeDoDiretor) {
+        this.nomeDoDiretor = nomeDoDiretor;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
 }

@@ -36,6 +36,23 @@ public class FilmesService {
 
     }
 
+    public void update(Filme filme) {
+        int notaValidada = validaNota(filme.getNota());
+
+        if (notaValidada >= 0) {
+            Filme filmeParaAlterar = filmes.stream()
+                    .filter(film -> film.getId().equals(filme.getId()))
+                    .findFirst()
+                    .get();
+            filmeParaAlterar.setNome(filme.getNome());
+            filmeParaAlterar.setNomeDoDiretor(filme.getNomeDoDiretor());
+            filmeParaAlterar.setAno(filme.getAno());
+        } else {
+            throw new NotaInvalidaException();
+        }
+
+    }
+
     private int validaNota(int notaNova) {
         return Arrays.binarySearch(notas, notaNova);
     }
