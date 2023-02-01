@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/filmes")
@@ -31,6 +32,12 @@ public class FilmesController {
     public String update(@RequestBody Filme filme) {
         filmesService.update(filme);
         return "Filme atualizado.";
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") UUID id) {
+        filmesService.delete(id);
+        return new ResponseEntity<>("Filme apagado.", HttpStatus.OK);
     }
 
 }

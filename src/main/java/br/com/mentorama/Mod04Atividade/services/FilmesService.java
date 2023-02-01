@@ -1,5 +1,6 @@
 package br.com.mentorama.Mod04Atividade.services;
 
+import br.com.mentorama.Mod04Atividade.exceptions.FilmeNaoEncontradoException;
 import br.com.mentorama.Mod04Atividade.exceptions.NotaInvalidaException;
 import br.com.mentorama.Mod04Atividade.models.Filme;
 import org.springframework.stereotype.Service;
@@ -26,19 +27,16 @@ public class FilmesService {
 
     public void add(Filme filme) {
         int notaValidada = validaNota(filme.getNota());
-
         if(notaValidada >= 0){
             filme.setId(UUID.randomUUID());
             this.filmes.add(filme);
         } else {
             throw new NotaInvalidaException();
         }
-
     }
 
     public void update(Filme filme) {
         int notaValidada = validaNota(filme.getNota());
-
         if (notaValidada >= 0) {
             Filme filmeParaAlterar = filmes.stream()
                     .filter(film -> film.getId().equals(filme.getId()))
@@ -50,11 +48,16 @@ public class FilmesService {
         } else {
             throw new NotaInvalidaException();
         }
+    }
 
+    public void delete(UUID id) {
+        boolean remove = filmes.removeIf(film -> film.getId().equals(id));
+        if (!remove) {
+            throw new FilmeNaoEncontradoException();
+        }
     }
 
     private int validaNota(int notaNova) {
         return Arrays.binarySearch(notas, notaNova);
     }
-
 }

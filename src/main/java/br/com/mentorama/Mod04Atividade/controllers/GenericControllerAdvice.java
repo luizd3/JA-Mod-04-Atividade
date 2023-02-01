@@ -1,5 +1,6 @@
 package br.com.mentorama.Mod04Atividade.controllers;
 
+import br.com.mentorama.Mod04Atividade.exceptions.FilmeNaoEncontradoException;
 import br.com.mentorama.Mod04Atividade.exceptions.NotaInvalidaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,12 @@ public class GenericControllerAdvice {
         String message = "Filme não cadastrado/atualizado." +
                 " Nota inválida. Nota deve ser um número inteiro entre 1 e 5.";
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler ({FilmeNaoEncontradoException.class})
+    public static ResponseEntity<String> handle(final FilmeNaoEncontradoException e) {
+        String message = "Filme não encontrado.";
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
 }
