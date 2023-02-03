@@ -1,5 +1,6 @@
 package br.com.mentorama.Mod04Atividade.controllers;
 
+import br.com.mentorama.Mod04Atividade.exceptions.FilmeDuplicadoException;
 import br.com.mentorama.Mod04Atividade.exceptions.FilmeNaoEncontradoException;
 import br.com.mentorama.Mod04Atividade.exceptions.NotaInvalidaException;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,12 @@ public class GenericControllerAdvice {
     public static ResponseEntity<String> handle(final FilmeNaoEncontradoException e) {
         String message = "Filme não encontrado.";
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler ({FilmeDuplicadoException.class})
+    public static ResponseEntity<String> handle(final FilmeDuplicadoException e) {
+        String message = "Filme não cadastrado/atualizado. Já existe na base de dados.";
+        return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
 }

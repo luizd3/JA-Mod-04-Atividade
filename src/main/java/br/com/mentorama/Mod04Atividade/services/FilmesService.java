@@ -23,11 +23,13 @@ public class FilmesService {
 
     public void add(Filme filme) {
         validadores.validaNota(filme.getNota());
+        validadores.validaFilmeDuplicado(filme);
         this.filmesRepository.add(filme);
     }
 
     public void update(Filme filme) {
         validadores.validaNota(filme.getNota());
+        validadores.validaFilmeDuplicado(filme);
         filmesRepository.update(filme);
     }
 
