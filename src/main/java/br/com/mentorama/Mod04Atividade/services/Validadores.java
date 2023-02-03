@@ -1,5 +1,6 @@
 package br.com.mentorama.Mod04Atividade.services;
 
+import br.com.mentorama.Mod04Atividade.exceptions.FilmeCampoNuloException;
 import br.com.mentorama.Mod04Atividade.exceptions.FilmeDuplicadoException;
 import br.com.mentorama.Mod04Atividade.exceptions.NotaInvalidaException;
 import br.com.mentorama.Mod04Atividade.models.Filme;
@@ -26,15 +27,25 @@ public class Validadores {
 
     public void validaFilmeDuplicado(Filme novoFilme) {
         filmesRepository.findAll().stream().forEach(film -> {
-                    if (film.getNome().equals(novoFilme.getNome())) {
-                        if (film.getNomeDoDiretor().equals(novoFilme.getNomeDoDiretor())) {
-                            if (film.getAno() == novoFilme.getAno()) {
+                    if (film.getNome().equalsIgnoreCase(novoFilme.getNome())) {
+                        if (film.getNomeDoDiretor().equalsIgnoreCase(novoFilme.getNomeDoDiretor())) {
+                            if (film.getAno().equals(novoFilme.getAno())) {
                                 throw new FilmeDuplicadoException();
                             }
                         }
                     }
                 }
         );
+    }
+
+    public void validaCampoNulo(Filme filme) {
+        try {
+            filme.getNome().length();
+            filme.getNomeDoDiretor().length();
+            filme.getAno().byteValue();
+        } catch (RuntimeException e) {
+            throw new FilmeCampoNuloException();
+        }
     }
 
 }

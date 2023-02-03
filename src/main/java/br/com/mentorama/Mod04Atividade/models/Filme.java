@@ -7,10 +7,10 @@ public class Filme {
     private UUID id;
     private String nome;
     private String nomeDoDiretor;
-    private int ano;
+    private Integer ano;
     private int nota;
 
-    public Filme(final UUID id, final String nome, final String nomeDoDiretor, final int ano, final int nota) {
+    public Filme(final UUID id, final String nome, final String nomeDoDiretor, final Integer ano, final int nota) {
         this.id = id;
         this.nome = nome;
         this.nomeDoDiretor = nomeDoDiretor;
@@ -30,7 +30,7 @@ public class Filme {
         return nomeDoDiretor;
     }
 
-    public int getAno() {
+    public Integer getAno() {
         return ano;
     }
 
@@ -50,7 +50,7 @@ public class Filme {
         this.nomeDoDiretor = nomeDoDiretor;
     }
 
-    public void setAno(int ano) {
+    public void setAno(Integer ano) {
         this.ano = ano;
     }
 
