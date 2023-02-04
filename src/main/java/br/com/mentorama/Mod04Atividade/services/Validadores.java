@@ -39,11 +39,9 @@ public class Validadores {
     }
 
     public void validaCampoNulo(Filme filme) {
-        try {
-            filme.getNome().length();
-            filme.getNomeDoDiretor().length();
-            filme.getAno().byteValue();
-        } catch (RuntimeException e) {
+        if (filme.getNome() == null || filme.getNome() == "" ||
+                filme.getNomeDoDiretor() == null || filme.getNomeDoDiretor() == "" ||
+                filme.getAno() == null || filme.getAno() == 0) {
             throw new FilmeCampoNuloException();
         }
     }

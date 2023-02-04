@@ -33,7 +33,7 @@ public class GenericControllerAdvice {
 
     @ExceptionHandler ({FilmeCampoNuloException.class})
     public static ResponseEntity<String> handle(final FilmeCampoNuloException e) {
-        String message = "Filme não cadastrado/atualizado. Nenhum campo pode ser nulo.";
+        String message = "Filme não cadastrado/atualizado. Nenhum campo pode ser nulo ou vazio.";
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
