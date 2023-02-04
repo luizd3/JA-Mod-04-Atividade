@@ -22,10 +22,11 @@ public class FilmesRepository {
         return filmes;
     }
 
-    public List<Filme> findById(UUID id) {
+    public Filme findById(UUID id) {
         return filmes.stream()
                 .filter(film -> film.getId().equals(id))
-                .collect(Collectors.toList());
+                .findFirst()
+                .orElseThrow(FilmeNaoEncontradoException::new);
     }
 
     public void add(Filme filme) {

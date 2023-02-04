@@ -18,8 +18,13 @@ public class FilmesController {
     private FilmesService filmesService;
 
     @GetMapping
-    public List<Filme> findAll(@RequestParam(required = false) UUID id) {
-        return filmesService.findAll(id);
+    public List<Filme> findAll() {
+        return filmesService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Filme findById(@PathVariable("id") UUID id) {
+        return filmesService.findById(id);
     }
 
     @PostMapping

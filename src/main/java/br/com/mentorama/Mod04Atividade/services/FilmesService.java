@@ -17,11 +17,12 @@ public class FilmesService {
     @Autowired
     private Validadores validadores;
 
-    public List<Filme> findAll(UUID id) {
-        if (id != null) {
-            return filmesRepository.findById(id);
-        }
+    public List<Filme> findAll() {
         return filmesRepository.findAll();
+    }
+
+    public Filme findById(UUID id) {
+        return filmesRepository.findById(id);
     }
 
     public void add(Filme filme) {
