@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class FilmesRepository {
@@ -19,6 +20,12 @@ public class FilmesRepository {
 
     public List<Filme> findAll() {
         return filmes;
+    }
+
+    public List<Filme> findById(UUID id) {
+        return filmes.stream()
+                .filter(film -> film.getId().equals(id))
+                .collect(Collectors.toList());
     }
 
     public void add(Filme filme) {
