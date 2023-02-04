@@ -18,8 +18,8 @@ public class FilmesController {
     private FilmesService filmesService;
 
     @GetMapping
-    public List<Filme> findAll() {
-        return filmesService.findAll();
+    public List<Filme> findAll(@RequestParam( required = false) String nome) {
+        return filmesService.findAll(nome);
     }
 
     @GetMapping("/{id}")

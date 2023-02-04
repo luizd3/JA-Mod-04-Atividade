@@ -17,7 +17,10 @@ public class FilmesService {
     @Autowired
     private Validadores validadores;
 
-    public List<Filme> findAll() {
+    public List<Filme> findAll(String nome) {
+        if (nome != null) {
+            return filmesRepository.findAll(nome);
+        }
         return filmesRepository.findAll();
     }
 

@@ -22,6 +22,12 @@ public class FilmesRepository {
         return filmes;
     }
 
+    public List<Filme> findAll(String nome) {
+        return filmes.stream()
+                .filter(film -> film.getNome().toLowerCase().contains(nome.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
     public Filme findById(UUID id) {
         return filmes.stream()
                 .filter(film -> film.getId().equals(id))
