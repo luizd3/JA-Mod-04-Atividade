@@ -2,6 +2,7 @@ package br.com.mentorama.Mod04Atividade.services;
 
 import br.com.mentorama.Mod04Atividade.models.Filme;
 import br.com.mentorama.Mod04Atividade.repositories.FilmesRepository;
+import br.com.mentorama.Mod04Atividade.validators.IValidadador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class FilmesService {
     private FilmesRepository filmesRepository;
 
     @Autowired
-    private Validadores validadores;
+    private List<IValidadador> validadores;
 
     public List<Filme> findAll(String nome) {
         if (nome != null) {
@@ -29,16 +30,12 @@ public class FilmesService {
     }
 
     public void add(Filme filme) {
-        validadores.validaCampoNulo(filme);
-        validadores.validaFilmeDuplicado(filme);
-        validadores.validaNota(filme.getNota());
+        validadores.forEach(validadador -> validadador.valida(filme));
         this.filmesRepository.add(filme);
     }
 
     public void update(Filme filme) {
-        validadores.validaCampoNulo(filme);
-        validadores.validaFilmeDuplicado(filme);
-        validadores.validaNota(filme.getNota());
+        validadores.forEach(validadador -> validadador.valida(filme));
         filmesRepository.update(filme);
     }
 
