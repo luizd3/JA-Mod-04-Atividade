@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class FilmesService {
+public class FilmesService implements IFilmesService{
 
     @Autowired
     private FilmesRepository filmesRepository;

@@ -1,7 +1,7 @@
 package br.com.mentorama.Mod04Atividade.controllers;
 
 import br.com.mentorama.Mod04Atividade.models.Filme;
-import br.com.mentorama.Mod04Atividade.services.FilmesService;
+import br.com.mentorama.Mod04Atividade.services.IFilmesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class FilmesController {
 
     @Autowired
-    private FilmesService filmesService;
+    private IFilmesService filmesService;
 
     @GetMapping
     public List<Filme> findAll(@RequestParam( required = false) String nome) {
