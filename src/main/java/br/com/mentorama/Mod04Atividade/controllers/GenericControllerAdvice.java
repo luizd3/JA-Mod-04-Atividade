@@ -18,26 +18,30 @@ public class GenericControllerAdvice {
 
     @ExceptionHandler ({NotaInvalidaException.class})
     public static ResponseEntity<String> handle(final NotaInvalidaException e) {
-        String message = "Filme não cadastrado/atualizado." +
+        final String message = "Filme não cadastrado/atualizado." +
                 " Nota inválida. Nota deve ser um número inteiro entre 1 e 5.";
+        LOGGER.warn(message);
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler ({FilmeNaoEncontradoException.class})
     public static ResponseEntity<String> handle(final FilmeNaoEncontradoException e) {
-        String message = "Filme não encontrado.";
+        final String message = "Filme não encontrado.";
+        LOGGER.warn(message);
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler ({FilmeDuplicadoException.class})
     public static ResponseEntity<String> handle(final FilmeDuplicadoException e) {
-        String message = "Filme não cadastrado/atualizado. Já existe na base de dados.";
+        final String message = "Filme não cadastrado/atualizado. Já existe na base de dados.";
+        LOGGER.warn(message);
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @ExceptionHandler ({FilmeCampoNuloException.class})
     public static ResponseEntity<String> handle(final FilmeCampoNuloException e) {
-        String message = "Filme não cadastrado/atualizado. Nenhum campo pode ser nulo ou vazio.";
+        final String message = "Filme não cadastrado/atualizado. Nenhum campo pode ser nulo ou vazio.";
+        LOGGER.warn(message);
         return new ResponseEntity<>(message, HttpStatus.NOT_ACCEPTABLE);
     }
 
